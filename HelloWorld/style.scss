@@ -1,0 +1,31 @@
+
+
+$font: 'Open Sans', Arial, sans-serif;
+$altcolor:white;
+$lpad: 10px;
+$text: left;
+
+body {
+    
+    background-color: white
+}
+h1 {
+    font-family: $font;
+    background-image: url(pattern.jpeg)
+    color: khaki;
+}    
+
+.brushes {
+    color: $altcolor
+    background-color: mediumspringgreen
+}
+
+.frames {
+    color: $altcolor
+    background-color: lightcoral
+}
+
+.paint {
+    color: $altcolor
+    background-color: skyblue
+}

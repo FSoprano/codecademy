@@ -1,0 +1,38 @@
+body {
+  background-color: white; }
+
+h1 {
+  font-family: Helvetica;
+  background-image: url(pattern.jpeg);
+  font-size: 100px;
+  font-weight: bold;
+  color: khaki;
+  text-align: center; }
+
+h2 {
+  font-family: Helvetica;
+  color: white;
+  font-size: 32px;
+  font-weight: bold; }
+
+h3 {
+  font-family: Helvetica; }
+
+strong {
+  font-family: Helvetica;
+  color: blue;
+  font-weight: bold; }
+
+p {
+  font-family: Helvetica; }
+
+.brushes {
+  background-color: mediumspringgreen; }
+
+.frames {
+  background-color: lightcoral; }
+
+.paint {
+  background-color: skyblue; }
+
+/*# sourceMappingURL=style.css.map */
