@@ -1,5 +1,4 @@
 const faker = require('faker');
-
 let minionIdCounter = 1;
 
 const createMinion = () => {
@@ -52,7 +51,7 @@ const createIdea = () => {
     weeklyRevenue = Math.floor(Math.random() * 123562);
     numWeeks = Math.floor(Math.random() * 104) + 6;
   }
-
+  
   return {
     id: `${ideaIdCounter++}`,
     name: `${name} but for ${noun}`,
