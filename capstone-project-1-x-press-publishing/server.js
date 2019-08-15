@@ -5,7 +5,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const errHandler = require('errorhandler');
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 4000;
 
 app.use(bodyParser.json());
 app.use(morgan('dev'));
