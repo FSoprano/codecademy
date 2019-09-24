@@ -8,11 +8,30 @@ import { tsConstructorType } from '@babel/types';
 
 class App extends React.Component {
 
+    
 constructor(props) {
     super(props);
-    this.state = SearchResults;
+    this.state = {searchResults: {},
+                  playlistName: 'blubber',
+                  playlistTracks: {}};
+    this.setState({searchResults: SearchResults}) ;
 
-}
+    this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
+    }
+
+    addTrack(track) {
+        if (this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
+            return;
+          }
+    }
+
+    removeTrack(track) {
+        if (this.state.playlistTracks.filter(track.id) !== -1) {
+            this.setState({playlistTracks: this.state.playlistTracks.splice(track, 1)});
+        }
+    }
+
     render() {
     return (
         <div>
@@ -20,8 +39,8 @@ constructor(props) {
     <div className="App">
         <SearchBar />
         <div className="App-playlist">
-        <SearchResults />
-        <Playlist />
+        <SearchResults searchResults={this.state.searchResults} onAdd={this.addTrack} />
+        <Playlist playlistName={this.state.playlistName} playlistTracks={this.state.playlistTracks} />
         </div>
     </div>
     </div>
