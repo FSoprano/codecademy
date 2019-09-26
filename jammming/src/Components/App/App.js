@@ -4,6 +4,7 @@ import './App.css';
 import SearchBar from '../SearchBar/SearchBar.js';
 import SearchResults from '../SearchResults/SearchResults.js';
 import Playlist from '../Playlist/Playlist.js';
+import Spotify from '../../util/Spotify.js';
 import { tsConstructorType } from '@babel/types';
 
 class App extends React.Component {
@@ -46,8 +47,10 @@ constructor(props) {
         });
     }
 
-    search(term) {
-        console.log(term);
+    async search(term) {
+        let results = await Spotify.search(term);
+        this.setState({searchResults: results});
+
     }
 
     render() {

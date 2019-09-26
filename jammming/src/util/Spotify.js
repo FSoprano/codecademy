@@ -4,7 +4,7 @@ let accessToken;
 
 const Spotify = {
     
-    const getAccessToken = () => {
+    getAccessToken() {
         if (accessToken) {
             return accessToken;
         }
@@ -24,7 +24,40 @@ const Spotify = {
             const accessURL = `https://accounts.spotify.com/authorize?client_id=${clientID}&response_type=token&scope=playlist-modify-public&redirect_uri=${redirectURI}`;
             window.location = accessURL; 
         }
+    },
+
+    async search(term) {
+        const searchTerm = term;
+        const urlToFetch = `https://api.spotify.com/v1/search?type=track&q=${searchTerm}`;
+        const accessToken = this.getAccessToken();
+        const headers = {
+            headers: {Authorization: `Bearer ${accessToken}`}
+        }
+        try {
+            const response = await fetch(urlToFetch, headers);
+            if(response.ok) {
+                const jsonResponse = await response.json();
+                console.log(jsonResponse);
+
+                if (!jsonResponse.tracks) {
+                    return [];
+                }
+
+                return jsonResponse.tracks.items.map(track => (
+                    {
+                    id: track.id,
+                    name: track.name,
+                    artists: track.artists[0].name,
+                    album: track.album.name,
+                    uri: track.uri
+                    }
+                ));
+            }
+        }
+        catch(error) {
+            console.log(error);
+        }
     }
-};
+}
 
 export default Spotify;
