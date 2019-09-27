@@ -1,6 +1,5 @@
 import React from 'react';
 import './Track.css';
-import TrackList from '../TrackList/TrackList';
 
 class Track extends React.Component {
 
@@ -10,18 +9,18 @@ class Track extends React.Component {
         this.removeTrack = this.removeTrack.bind(this);
     }
     renderAction () {
-        let isRemoval = false;
-        if (isRemoval) {
-            return('-');
+        // let isRemoval = false;
+        if (this.props.isRemoval === true) {
+            return(<button className="Track-action" onClick={this.removeTrack}>-</button>);
         } else {
-            return(<div onClick={this.addTrack}>+</div>);
+            return(<button className="Track-action" onClick={this.addTrack}>+</button>);
         }
     }
-    addTrack(track) {
-        this.props.onAdd = this.props.track;
+    addTrack() {
+        this.props.onAdd(this.props.track);
     }
     removeTrack() {
-        this.props.onRemove = this.props.track;
+        this.props.onRemove(this.props.track);
     }
     render() {
         return(
@@ -30,11 +29,9 @@ class Track extends React.Component {
                     <h3>{this.props.track.name}</h3>
                     <p>{this.props.track.artist} | {this.props.track.album}</p>
                 </div>
-            <button className="Track-action">{this.props.renderAction}</button>
+                {this.renderAction()}
             </div>
         );
     }; 
 }
-
-
 export default Track;

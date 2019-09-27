@@ -8,7 +8,9 @@ class SearchResults extends React.Component {
         return(
             <div className="SearchResults">
             <h2>Results</h2>
-              <TrackList tracks={[this.props.searchResults]} onAdd={this.props.addTrack} isRemoval="false" />
+            {/* onAdd: Don't pass the addTrack function, pass the prop or attribute! 
+             isRemoval: Boolean values also in curly braces ! */}
+              <TrackList tracks={this.props.searchResults} onAdd={this.props.onAdd} isRemoval= {false} />
           </div> 
         );
     }; 
