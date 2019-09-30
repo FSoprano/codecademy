@@ -1,5 +1,6 @@
 const clientID = '';
-const redirectURI = 'http://localhost:3000/';
+const redirectURI = 'http://localhost:3000/'
+// const redirectURI = 'https://blubgrub.surge.sh/';
 let accessToken;
 
 const Spotify = {
