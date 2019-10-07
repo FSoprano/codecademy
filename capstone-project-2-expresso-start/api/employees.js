@@ -2,6 +2,7 @@ const express = require('express');
 const empRouter = express.Router();
 const sqlite3 = require('sqlite3');
 const db = new sqlite3.Database(process.env.TEST_DATABASE || './database.sqlite');
+const tsRouter = require('./timesheets');
 
 empRouter.get('/', (req, res, next) => {
     db.all('SELECT * FROM Employee WHERE is_current_employee = 1', function (err, rows) {
@@ -103,5 +104,24 @@ empRouter.put('/:employeeId', checkReqFields, (req, res, next) => {
       }
     });
   });
+
+  empRouter.delete('/:employeeId', (req, res, next) => {
+    db.run(`UPDATE Employee SET is_current_employee = 0 \
+    WHERE id = ${req.params.employeeId}`, 
+    (error) => {
+        if (error) {
+            next(error);
+        }
+        db.get(`SELECT * FROM Employee WHERE id = ${req.params.employeeId}`, 
+            (err, row) => {
+                if (err) {
+                    return res.status(500).send();
+                }
+                res.status(200).send({employee: row});     
+            });
+    });
+});
+
+empRouter.use('/:employeeId/timesheets', tsRouter);
   
 module.exports = empRouter;
