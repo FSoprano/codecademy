@@ -27,7 +27,7 @@ const checkTimesheet= (req, res, next) => {
 
 tsRouter.post('/', checkTimesheet, (req, res, next) => {
     
-    console.log(req.body);
+    // console.log(req.body);
     db.run(`INSERT INTO Timesheet (hours, rate, date, employee_id) VALUES 
     ($hours, $rate, $date, $empId)`, {
         $hours: req.body.timesheet.hours,
