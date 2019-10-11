@@ -1,0 +1,19 @@
+{
+  "name": "rooster-regulation",
+  "version": "1.0.0",
+  "description": "Advanced testing with mocha and assert methods",
+  "main": "index.js",
+  "repository": "https://github.com/FSoprano/codecademy",
+  "scripts": {
+    "test": "mocha"
+  },
+  "keywords": [
+    "assert.throw"
+  ],
+  "author": "Francesco",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "^6.2.1"
+  },
+  "private": false
+}
