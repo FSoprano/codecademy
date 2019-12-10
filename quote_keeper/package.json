@@ -1,0 +1,50 @@
+{
+  "name": "quote_keeper",
+  "version": "1.0.0",
+  "description": "Testing at feature, server, and model level",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "bin/mocha-test && PORT=8001 bin/wdio-test"
+  },
+  "keywords": [
+    "mocha",
+    "chai",
+    "assert"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^3.1.0",
+    "jsdom": "^15.2.1",
+    "mongoose": "^5.7.10",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "@wdio/cli": "^5.16.7",
+    "@wdio/local-runner": "^5.16.7",
+    "@wdio/mocha-framework": "^5.16.5",
+    "@wdio/selenium-standalone-service": "^5.16.5",
+    "@wdio/spec-reporter": "^5.16.5",
+    "@wdio/sync": "^5.16.5",
+    "chai": "^4.2.0",
+    "chromedriver": "^78.0.1",
+    "eslint": "^6.6.0",
+    "eslint-config-google": "^0.14.0",
+    "mocha": "^6.2.2",
+    "selenium-standalone": "^6.16.0",
+    "supertest": "^4.0.2",
+    "wdio-chromedriver-service": "^5.0.2",
+    "wdio-phantomjs-service": "^0.2.2",
+    "wdio-selenium-standalone-service": "0.0.12",
+    "wdio-spec-reporter": "^0.1.5",
+    "webdriverio": "^5.16.7"
+  }
+}
