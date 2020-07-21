@@ -1,0 +1,89 @@
+Feature Proposal: Playlist Sorter
+November 29th 2019
+
+OBJECTIVE
+In the Jammming app, provide controls to change the order of song titles on a playlist before saving
+the playlist.
+
+BACKGROUND 
+Users enter a search term into the search field of the Jammming app and 
+get a list of song titles in return.
+Their next task is to go through the list and click song titles they want to add to a playlist.
+Almost always, they go through the list of search results from top to bottom. As a result, titles 
+that they click get added to the playlist in the same order in which they appear on the list of search 
+results. This might not be the order the user wants the titles to played in.
+Currently, the only way to change the order of titles on a playlist of the Jammming app is to remove 
+the title, which effects that the following titles move upwards one position on the list. The user can 
+then re-add the title, in which case it would be appended at the end of the list. This way of 
+changing the order is very cumbersome because it might involve numerous steps of removing and re-adding 
+titles before the order is as intended. The number of steps increases with the number of positions 
+a user wants move a title. 
+It would therefore be helpful if there was an easier way to change the order of selected titles on a  
+playlist before the playlist is saved.
+
+TECHNICAL DESIGN
+
+The intended design is as follows:
+If the user clicks a title already on the playlist in the right half of the browser window, the 
+background color of the title changes to mark the selection and two buttons appear at the very end 
+of the title line (when read from left to right). The buttons are vertically aligned; the upper button 
+shows an upward-pointing arrow, whereas the lower button shows a downward-pointing arrow. If one 
+of the buttons is clicked, the selected title moves one position up or down on the list. This way, 
+the title can be moved to the desired position with a number of repeated clicks.
+
+Edge cases: The first title on the list, when selected, must not show the button to move the title upwards, or the 
+button must be disabled and the disablement must be indicated visually (button grayed out). Likewise, 
+the last title on the playlist must not show a downward-pointing button, or this button must be dis-
+abled. Again, the disablement must be indicated visually.
+
+How to realize this design:
+Several React components of the Jammming app need to be extended.
+The App component must be extended by two methods, one that moves a title upwards, and one that moves 
+a title downwards.
+The tracks are array elements (it's the playlistTracks array), so what has to be done when one of these new functions is invoked is 
+to change the position of the selected title or element in the array. In other words, we need to change
+the index of the selected element in that the index number is decreased or increased by 1.
+This can be achieved in plain JavaScript by the following function:
+
+function array_move(arr, old_index, new_index) {
+    while (old_index < 0) {
+        old_index += arr.length;
+    }
+    while (new_index < 0) {
+        new_index += arr.length;
+    }
+    if (new_index >= arr.length) {
+        var k = new_index - arr.length + 1;
+        while (k--) {
+            arr.push(undefined);
+        }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+    return arr; // for testing purposes
+};
+This function is taken from StackOverflow (https://stackoverflow.com/questions/5306680/move-an-array-element-from-one-array-position-to-another);
+
+In addition, the TrackList and PlayList components must be extended so that the two new functions 
+become available (attributes must be added to the rendered JSX, so that these functions can be invoked).
+
+Finally, the Track component must be extended so that the two buttons are rendered when a title 
+on the Playlist is selected. Maybe the renderAction() can be extended for this purpose. 
+The change of the title background can be achieved by adding an appropriate selector to the 
+accompanying CSS file (Track.css).
+
+
+CAVEATS
+
+I can see no caveats with the proposed solution.
+
+There is one alternative to the proposed solution, and that is to let users save a playlist first 
+and let them edit it thereafter. This would require more or less the same functionality as 
+outlined above. 
+
+The alternative was discarded because it means that there is an additional stop for the user: She or 
+he needs to locate the saved playlist and then edit it. 
+
+If the alternative were to be included in the Jammming app, it would even mean a much higher 
+development effort because the development team would have to provide new UI elements and the 
+functionality to locate and retrieve saved playlists.
+
