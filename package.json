@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "apollo-boost": "^0.4.2",
+    "apollo-client": "^2.6.0-rc.3",
+    "create-react-app": "^3.3.0",
+    "graphql": "^14.3.1",
+    "react": "^15.0.0",
+    "react-apollo": "2.5.6",
+    "react-dom": "^15.0.0"
+  }
+}
