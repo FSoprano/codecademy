@@ -1,1 +1,6 @@
-.DS_Store
+**/node_modules
+**/.DS_Store
+.gitignore
+**/package-lock.json
+**/npm*log
+**/.sass-cache
