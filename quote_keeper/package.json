@@ -26,7 +26,7 @@
     "mongoose": "^5.7.10",
     "morgan": "^1.9.1",
     "path": "^0.12.7",
-    "serialize-javascript": "^2.1.2"
+    "serialize-javascript": "^3.1.0"
   },
   "devDependencies": {
     "@wdio/cli": "^5.16.7",
